@@ -1,5 +1,5 @@
-//  JappeOS-Desktop, The desktop environment for JappeOS.
-//  Copyright (C) 2022  Jappe02
+//  JappeOS-DesktopUI, UI Widgets for JappeOS Desktop & Login.
+//  Copyright (C) 2023  Jappe02
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -42,7 +42,8 @@ class DeuiSolidContainer extends StatefulWidget {
   /// Whether to use a smaller variant of border radius.
   final bool? reducedRadius;
 
-  const DeuiSolidContainer({Key? key, required this.child, this.bordered, this.width, this.height, this.radiusSides, this.reducedRadius}) : super(key: key);
+  const DeuiSolidContainer({Key? key, required this.child, this.bordered, this.width, this.height, this.radiusSides, this.reducedRadius})
+      : super(key: key);
 
   @override
   _DeuiSolidContainerState createState() => _DeuiSolidContainerState();
@@ -52,15 +53,24 @@ class DeuiSolidContainer extends StatefulWidget {
 class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
   @override
   Widget build(BuildContext context) {
-    Color borderColor = context.watch<ShadeThemeProvider>().getTheme() == 0 ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
+    Color borderColor =
+        context.watch<ShadeThemeProvider>().getTheme() == 0 ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
 
     bool reducedRadius = widget.reducedRadius ?? false;
 
     BorderRadiusGeometry brg = BorderRadius.only(
-      topLeft: widget.radiusSides!.topLeft ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11)) : Radius.zero,
-      topRight: widget.radiusSides!.topRight ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11)) : Radius.zero,
-      bottomLeft: widget.radiusSides!.bottomLeft ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11)) : Radius.zero,
-      bottomRight: widget.radiusSides!.bottomRight ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11)) : Radius.zero,
+      topLeft: widget.radiusSides!.topLeft
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          : Radius.zero,
+      topRight: widget.radiusSides!.topRight
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          : Radius.zero,
+      bottomLeft: widget.radiusSides!.bottomLeft
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          : Radius.zero,
+      bottomRight: widget.radiusSides!.bottomRight
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          : Radius.zero,
     );
 
     return ClipRRect(

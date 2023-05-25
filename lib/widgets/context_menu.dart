@@ -1,5 +1,5 @@
-//  JappeOS-Desktop, The desktop environment for JappeOS.
-//  Copyright (C) 2022  Jappe02
+//  JappeOS-DesktopUI, UI Widgets for JappeOS Desktop & Login.
+//  Copyright (C) 2023  Jappe02
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -71,8 +71,9 @@ class _DeuiContextMenuState extends State<DeuiContextMenu> {
   @override
   Widget build(BuildContext context) {
     return DeuiBlurContainer(
-      child: Column(children: widget.items,)
-    );
+        child: Column(
+      children: widget.items,
+    ));
   }
 }
 

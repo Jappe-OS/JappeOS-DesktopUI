@@ -1,5 +1,5 @@
-//  JappeOS-Desktop, The desktop environment for JappeOS.
-//  Copyright (C) 2022  Jappe02
+//  JappeOS-DesktopUI, UI Widgets for JappeOS Desktop & Login.
+//  Copyright (C) 2023  Jappe02
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Affero General Public License as
@@ -75,7 +75,8 @@ class _DeuiButtonBaseState extends State<DeuiButtonBase> {
   @override
   Widget build(BuildContext context) {
     Color accentColor = context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor;
-    double backgroundTransparency = widget.backgroundColor != null ? ((widget.backgroundColorTransp ?? true) ? 0.5 : widget.backgroundColor!.opacity) : 0.5;
+    double backgroundTransparency =
+        widget.backgroundColor != null ? ((widget.backgroundColorTransp ?? true) ? 0.5 : widget.backgroundColor!.opacity) : 0.5;
 
     return Align(
       alignment: widget.alignment ?? Alignment.topLeft,
