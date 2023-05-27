@@ -21,9 +21,9 @@ import 'package:provider/provider.dart';
 import 'package:shade_theming/shade_theming.dart';
 
 class JappeOsDesktopUI {
-  /// The dafault border radius for all of the widgets.
+  /// The default border radius for all of the widgets.
   static double getDefaultBorderRadius() {
-    return 20;
+    return 5;
   }
 
   /// A glassy border color used only by this package.

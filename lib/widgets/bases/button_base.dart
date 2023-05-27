@@ -33,7 +33,7 @@ class DeuiButtonBase extends StatefulWidget {
   final double? width;
 
   /// Controls the border radius of the button.
-  final double borderRadius;
+  final double? borderRadius;
 
   /// Set the color of the button background.
   final Color? backgroundColor;
@@ -58,7 +58,7 @@ class DeuiButtonBase extends StatefulWidget {
       this.child,
       this.height = 35,
       this.width,
-      this.borderRadius = 10,
+      this.borderRadius,
       this.backgroundColor,
       this.backgroundColorTransp = true,
       this.padding = const EdgeInsets.all(0),
@@ -76,8 +76,10 @@ class _DeuiButtonBaseState extends State<DeuiButtonBase> {
   @override
   Widget build(BuildContext context) {
     Color accentColor = context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor;
-    double backgroundTransparency =
-        widget.backgroundColor != null ? (widget.backgroundColorTransp ? JappeOsDesktopUI.theme_defaultGlassFieldTransparency() : widget.backgroundColor!.opacity) : JappeOsDesktopUI.theme_defaultGlassFieldTransparency();
+    double backgroundTransparency = widget.backgroundColor != null
+        ? (widget.backgroundColorTransp ? JappeOsDesktopUI.theme_defaultGlassFieldTransparency() : widget.backgroundColor!.opacity)
+        : JappeOsDesktopUI.theme_defaultGlassFieldTransparency();
+    double finalBR = widget.borderRadius ?? JappeOsDesktopUI.getDefaultBorderRadius();
 
     return Align(
       alignment: widget.alignment ?? Alignment.topLeft,
@@ -86,8 +88,9 @@ class _DeuiButtonBaseState extends State<DeuiButtonBase> {
         height: widget.height,
         width: widget.width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-          color: widget.backgroundColor?.withOpacity(backgroundTransparency) ?? accentColor.withOpacity(JappeOsDesktopUI.theme_defaultGlassFieldTransparency()),
+          borderRadius: BorderRadius.circular(finalBR),
+          color: widget.backgroundColor?.withOpacity(backgroundTransparency) ??
+              accentColor.withOpacity(JappeOsDesktopUI.theme_defaultGlassFieldTransparency()),
         ),
         child: Material(
           color: Colors.transparent,
@@ -96,7 +99,7 @@ class _DeuiButtonBaseState extends State<DeuiButtonBase> {
             hoverColor: accentColor.withOpacity(0.1),
             splashColor: accentColor.withOpacity(0.25),
             highlightColor: accentColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderRadius: BorderRadius.circular(finalBR),
             onTap: widget.onPress,
             child: Padding(
               padding: widget.padding,

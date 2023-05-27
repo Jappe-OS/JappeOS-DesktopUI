@@ -33,7 +33,7 @@ class DeuiButtonBaseGlasshover extends StatefulWidget {
   final double? width;
 
   /// Controls the border radius of the button.
-  final double borderRadius;
+  final double? borderRadius;
 
   /// Set the color of the button background.
   final Color? backgroundColor;
@@ -58,7 +58,7 @@ class DeuiButtonBaseGlasshover extends StatefulWidget {
       this.child,
       this.height = 35,
       this.width,
-      this.borderRadius = 10,
+      this.borderRadius,
       this.backgroundColor,
       this.backgroundColorTransp = true,
       this.padding = const EdgeInsets.all(0),
@@ -83,6 +83,7 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
 
     double borderWidth = JappeOsDesktopUI.theme_defaultBorderSize();
     Color borderColor = JappeOsDesktopUI.theme_customBorderColor(context);
+    double finalBR = widget.borderRadius ?? JappeOsDesktopUI.getDefaultBorderRadius();
 
     return Align(
       alignment: widget.alignment,
@@ -91,7 +92,7 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
         height: widget.height,
         width: widget.width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(finalBR),
           color: widget.backgroundColor?.withOpacity(backgroundTransparency) ?? JappeOsDesktopUI.theme_customGlassFieldBgColor(context),
           border: hovering ? Border.all(width: borderWidth, color: borderColor) : Border.all(width: borderWidth, color: Colors.transparent),
         ),
@@ -102,7 +103,7 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
             hoverColor: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(0.1),
             splashColor: accentColor.withOpacity(0.25),
             highlightColor: accentColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(widget.borderRadius),
+            borderRadius: BorderRadius.circular(finalBR),
             onTap: widget.onPress,
             onHover: (value) => setState(() {
               hovering = value;
