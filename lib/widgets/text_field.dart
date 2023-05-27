@@ -63,6 +63,7 @@ class _DeuiTextFieldState extends State<DeuiTextField> {
       alignment: widget.alignment,
       child: Container(
         width: widget.width,
+        height: 35,
         margin: widget.margin,
         child: TextField(
           onChanged: widget.onChanged,
