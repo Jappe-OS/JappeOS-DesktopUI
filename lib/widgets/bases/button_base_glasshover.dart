@@ -17,6 +17,7 @@
 // ignore_for_file: library_private_types_in_public_api, dead_code
 
 import 'package:flutter/material.dart';
+import 'package:jappeos_desktop_ui/jappeos_desktop_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:shade_theming/main.dart';
 
@@ -26,28 +27,28 @@ class DeuiButtonBaseGlasshover extends StatefulWidget {
   final Widget? child;
 
   /// The height of the button.
-  final double? height;
+  final double height;
 
   /// The width of the button.
   final double? width;
 
   /// Controls the border radius of the button.
-  final double? borderRadius;
+  final double borderRadius;
 
   /// Set the color of the button background.
   final Color? backgroundColor;
 
-  // Whether to use the default transparency effect on the button.
-  final bool? backgroundColorTransp;
+  /// Whether to use the default transparency effect on the button.
+  final bool backgroundColorTransp;
 
   /// Set the padding of the button.
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry padding;
 
   /// Set the margin of the button.
   final EdgeInsetsGeometry? margin;
 
   /// Sets the alignment of the button.
-  final Alignment? alignment;
+  final Alignment alignment;
 
   /// The [Function] triggered when the button is pressed.
   final Function()? onPress;
@@ -55,14 +56,14 @@ class DeuiButtonBaseGlasshover extends StatefulWidget {
   const DeuiButtonBaseGlasshover(
       {Key? key,
       this.child,
-      this.height,
+      this.height = 35,
       this.width,
-      this.borderRadius,
+      this.borderRadius = 10,
       this.backgroundColor,
-      this.backgroundColorTransp,
-      this.padding,
+      this.backgroundColorTransp = true,
+      this.padding = const EdgeInsets.all(0),
       this.margin,
-      this.alignment,
+      this.alignment = Alignment.topLeft,
       this.onPress})
       : super(key: key);
 
@@ -78,20 +79,20 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
   Widget build(BuildContext context) {
     Color accentColor = context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor;
     double backgroundTransparency =
-        widget.backgroundColor != null ? ((widget.backgroundColorTransp ?? true) ? 0.5 : widget.backgroundColor!.opacity) : 0.5;
+        widget.backgroundColor != null ? (widget.backgroundColorTransp ? JappeOsDesktopUI.theme_defaultGlassFieldTransparency() : widget.backgroundColor!.opacity) : JappeOsDesktopUI.theme_defaultGlassFieldTransparency();
 
-    double borderWidth = 1.5;
-    Color borderColor = context.watch<ShadeThemeProvider>().getTheme() == 0 ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2);
+    double borderWidth = JappeOsDesktopUI.theme_defaultBorderSize();
+    Color borderColor = JappeOsDesktopUI.theme_customBorderColor(context);
 
     return Align(
-      alignment: widget.alignment ?? Alignment.topLeft,
+      alignment: widget.alignment,
       child: Container(
         margin: widget.margin,
-        height: widget.height ?? 35,
+        height: widget.height,
         width: widget.width,
         decoration: BoxDecoration(
-          borderRadius: widget.borderRadius != null ? BorderRadius.circular(widget.borderRadius ?? 10) : null,
-          color: widget.backgroundColor?.withOpacity(backgroundTransparency) ?? accentColor.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          color: widget.backgroundColor?.withOpacity(backgroundTransparency) ?? JappeOsDesktopUI.theme_customGlassFieldBgColor(context),
           border: hovering ? Border.all(width: borderWidth, color: borderColor) : Border.all(width: borderWidth, color: Colors.transparent),
         ),
         child: Material(
@@ -101,13 +102,13 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
             hoverColor: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(0.1),
             splashColor: accentColor.withOpacity(0.25),
             highlightColor: accentColor.withOpacity(0.1),
-            borderRadius: widget.borderRadius != null ? BorderRadius.circular(widget.borderRadius ?? 10) : null,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
             onTap: widget.onPress,
             onHover: (value) => setState(() {
               hovering = value;
             }),
             child: Padding(
-              padding: widget.padding ?? const EdgeInsets.all(0),
+              padding: widget.padding,
               child: widget.child,
             ),
           ),

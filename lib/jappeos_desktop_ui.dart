@@ -14,8 +14,29 @@
 //  You should have received a copy of the GNU Affero General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shade_theming/shade_theming.dart';
+
 class JappeOsDesktopUI {
+  /// The dafault border radius for all of the widgets.
   static double getDefaultBorderRadius() {
     return 20;
   }
+
+  /// A glassy border color used only by this package.
+  static Color theme_customBorderColor(BuildContext ctx) =>
+      ctx.watch<ShadeThemeProvider>().getTheme() == 0 ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2);
+
+  /// The default background color for glassy fields.
+  static Color theme_customGlassFieldBgColor(BuildContext ctx) =>
+      ctx.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(0.1);
+
+  /// The default transparency of glass fields. A field here is a button, text field etc.
+  static double theme_defaultGlassFieldTransparency() => 0.1;
+
+  /// The default border thickness.
+  static double theme_defaultBorderSize() => 1.5;
 }
