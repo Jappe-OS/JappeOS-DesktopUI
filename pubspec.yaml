@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
   flutter_menu: ^0.4.1
+  flutter_svg: ^2.0.6
   provider: ^6.0.3
 
   shade_theming:
@@ -31,4 +32,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - resources/images/blur_noise.png
+    - resources/images/
