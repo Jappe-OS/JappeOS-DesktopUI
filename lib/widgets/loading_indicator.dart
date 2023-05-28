@@ -38,12 +38,14 @@ class _DeuiLoadingIndicatorState extends State<DeuiLoadingIndicator> {
     if (context.watch<ShadeThemeProvider>().getTheme() == 0) {
       return SvgPicture.asset(
         'resources/images/loading_lightth.svg',
+        package: "jappeos_desktop_ui",
         width: !widget.bigger ? 30.0 : 90.0,
         height: !widget.bigger ? 30.0 : 90.0,
       );
     } else {
       return SvgPicture.asset(
         'resources/images/loading_darkth.svg',
+        package: "jappeos_desktop_ui",
         width: !widget.bigger ? 30.0 : 90.0,
         height: !widget.bigger ? 30.0 : 90.0,
       );
