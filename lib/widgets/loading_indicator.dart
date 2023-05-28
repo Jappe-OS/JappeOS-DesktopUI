@@ -17,8 +17,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shade_theming/shade_theming.dart';
 
@@ -36,37 +34,9 @@ class DeuiLoadingIndicator extends StatefulWidget {
 class _DeuiLoadingIndicatorState extends State<DeuiLoadingIndicator> {
   @override
   Widget build(BuildContext context) {
-    bool lightTheme = context.watch<ShadeThemeProvider>().getTheme() == 0;
-
-    return FutureBuilder<String>(
-      future: rootBundle.loadString(lightTheme ? 'packages/jappeos_desktop_ui/resources/images/loading_lightth.svg' : 'packages/jappeos_desktop_ui/resources/images/loading_darkth.svg'),
-      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-        if (snapshot.hasData) {
-          return SvgPicture.string(
-            snapshot.data!,
-            width: !widget.bigger ? 30.0 : 90.0,
-            height: !widget.bigger ? 30.0 : 90.0,
-          );
-        } else {
-          return CircularProgressIndicator(); // Show a fallback loading indicator if the SVG hasn't been loaded yet
-        }
-      },
+    return CircularProgressIndicator(
+      color: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor,
+      strokeCap: StrokeCap.round,
     );
-
-    //if (context.watch<ShadeThemeProvider>().getTheme() == 0) {
-    //  return SvgPicture.asset(
-    //    'resources/images/loading_lightth.svg',
-    //    package: "jappeos_desktop_ui",
-    //    width: !widget.bigger ? 30.0 : 90.0,
-    //    height: !widget.bigger ? 30.0 : 90.0,
-    //  );
-    //} else {
-    //  return SvgPicture.asset(
-    //    'resources/images/loading_darkth.svg',
-    //    package: "jappeos_desktop_ui",
-    //    width: !widget.bigger ? 30.0 : 90.0,
-    //    height: !widget.bigger ? 30.0 : 90.0,
-    //  );
-    //}
   }
 }
