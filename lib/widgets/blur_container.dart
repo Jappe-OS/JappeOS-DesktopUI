@@ -75,20 +75,20 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
     BorderRadiusGeometry brg = widget.radiusSides != null
         ? BorderRadius.only(
             topLeft: widget.radiusSides!.topLeft
-                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
                 : Radius.zero,
             topRight: widget.radiusSides!.topRight
-                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
                 : Radius.zero,
             bottomLeft: widget.radiusSides!.bottomLeft
-                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
                 : Radius.zero,
             bottomRight: widget.radiusSides!.bottomRight
-                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+                ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
                 : Radius.zero,
           )
         : const BorderRadius.all(Radius.zero);
-
+ : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc())
     List<Color> gradientColors() {
       if (ShadeTheme.getTheme() == 0) {
         return [

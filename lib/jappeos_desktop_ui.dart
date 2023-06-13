@@ -20,11 +20,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shade_theming/shade_theming.dart';
 
+/// Main class that contains basic properties to build up this UI package.
 class JappeOsDesktopUI {
   /// The default border radius for all of the widgets.
-  static double getDefaultBorderRadius() {
-    return 10;
-  }
+  static double getDefaultBorderRadius() => 10;
+
+  /// The default REDUCED border radius for all of the widgets.
+  static double getDefaultBorderRadiusRedc() => 5;
 
   /// A glassy border color used only by this package.
   static Color theme_customBorderColor(BuildContext ctx) =>
@@ -32,9 +34,9 @@ class JappeOsDesktopUI {
 
   /// The default background color for glassy fields.
   static Color theme_customGlassFieldBgColor(BuildContext ctx) =>
-      ctx.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(0.1);
+      ctx.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(theme_defaultGlassFieldTransparency());
 
-  /// The default transparency of glass fields. A field here is a button, text field etc.
+  /// The default transparency of glass fields. A field here is a button, text field, etc.
   static double theme_defaultGlassFieldTransparency() => 0.1;
 
   /// The default border thickness.

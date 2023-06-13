@@ -60,16 +60,16 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
 
     BorderRadiusGeometry brg = BorderRadius.only(
       topLeft: widget.radiusSides!.topLeft
-          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
           : Radius.zero,
       topRight: widget.radiusSides!.topRight
-          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
           : Radius.zero,
       bottomLeft: widget.radiusSides!.bottomLeft
-          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
           : Radius.zero,
       bottomRight: widget.radiusSides!.bottomRight
-          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : const Radius.circular(11))
+          ? (!reducedRadius ? Radius.circular(JappeOsDesktopUI.getDefaultBorderRadius()) : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc()))
           : Radius.zero,
     );
 
