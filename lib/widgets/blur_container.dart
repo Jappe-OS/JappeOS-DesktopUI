@@ -88,7 +88,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
                 : Radius.zero,
           )
         : const BorderRadius.all(Radius.zero);
-
+ : Radius.circular(JappeOsDesktopUI.getDefaultBorderRadiusRedc())
     List<Color> gradientColors() {
       if (ShadeTheme.getTheme() == 0) {
         return [
