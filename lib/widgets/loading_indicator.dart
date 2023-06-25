@@ -22,9 +22,9 @@ import 'package:shade_theming/shade_theming.dart';
 
 /// A simple loading indicator.
 class DeuiLoadingIndicator extends StatefulWidget {
-  const DeuiLoadingIndicator({Key? key, this.bigger = false}) : super(key: key);
+  const DeuiLoadingIndicator({Key? key, this.value}) : super(key: key);
 
-  final bool bigger;
+  final double? value;
 
   @override
   _DeuiLoadingIndicatorState createState() => _DeuiLoadingIndicatorState();
@@ -36,7 +36,8 @@ class _DeuiLoadingIndicatorState extends State<DeuiLoadingIndicator> {
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
       color: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor,
-      strokeCap: StrokeCap.round,
+      strokeWidth: 6.0,
+      value: widget.value,
     );
   }
 }
