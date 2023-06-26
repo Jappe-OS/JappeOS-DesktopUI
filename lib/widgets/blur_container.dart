@@ -68,7 +68,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
   @override
   Widget build(BuildContext context) {
     int gradientSecondColorChange = 100;
-    double backgroundOpacity = 0.4;
+    double backgroundOpacity = 0.6;
 
     bool reducedRadius = widget.reducedRadius ?? false;
 
@@ -109,7 +109,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
     return ClipRRect(
       borderRadius: brg,
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(sigmaX: 13, sigmaY: 13),
         child: Container(
           width: widget.width,
           height: widget.height,
