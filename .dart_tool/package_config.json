@@ -51,9 +51,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.1",
+      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-2.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "flutter_menu",
@@ -93,9 +93,9 @@
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.3.0",
+      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/material_color_utilities-0.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.13"
     },
     {
       "name": "meta",
@@ -134,12 +134,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "shade_theming",
-      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/git/ShadeTheming-3ee28a4520cf4d8ad23b43e699a9524f95d9427d/",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "sky_engine",
       "rootUri": "file:///C:/FlutterSDK/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -147,9 +141,9 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.0",
+      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.9.1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.14"
     },
     {
       "name": "stack_trace",
@@ -177,7 +171,7 @@
     },
     {
       "name": "test_api",
-      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.5.2",
+      "rootUri": "file:///C:/Users/jaspe/AppData/Local/Pub/Cache/hosted/pub.dev/test_api-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -218,7 +212,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-06-24T14:10:22.642055Z",
+  "generated": "2023-07-03T15:26:17.361526Z",
   "generator": "pub",
-  "generatorVersion": "3.1.0-81.0.dev"
+  "generatorVersion": "3.0.5"
 }

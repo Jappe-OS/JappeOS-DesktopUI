@@ -18,8 +18,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:jappeos_desktop_ui/jappeos_desktop_ui.dart';
-import 'package:provider/provider.dart';
-import 'package:shade_theming/main.dart';
 
 /// A simple basic text field with a glassy hover & click effect.
 class DeuiTextField extends StatefulWidget {
@@ -52,12 +50,12 @@ class DeuiTextField extends StatefulWidget {
 class _DeuiTextFieldState extends State<DeuiTextField> {
   @override
   Widget build(BuildContext context) {
-    //Color accentColor = context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor;
+    //Color accentColor = Theme.of(context).colorScheme.primary;
     //double backgroundTransparency =
     //    widget.backgroundColor != null ? ((widget.backgroundColorTransp ?? true) ? 0.5 : widget.backgroundColor!.opacity) : 0.5;
 
     //double borderWidth = 1.5;
-    //Color borderColor = context.watch<ShadeThemeProvider>().getTheme() == 0 ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2);
+    //Color borderColor = Theme.of(context).brightness == 0 ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2);
 
     return Align(
       alignment: widget.alignment,
@@ -68,24 +66,18 @@ class _DeuiTextFieldState extends State<DeuiTextField> {
         child: TextField(
           onChanged: widget.onChanged,
           onSubmitted: widget.onSubmit,
-          style: TextStyle(color: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().normalTextColor),
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: TextStyle(
-                color: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().normalTextColor.withOpacity(0.5)),
-            filled: true,
             fillColor: JappeOsDesktopUI.theme_customGlassFieldBgColor(context),
             border: const OutlineInputBorder(),
             isDense: true,
             contentPadding: const EdgeInsets.all(12),
             enabledBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: JappeOsDesktopUI.theme_defaultBorderSize(), color: JappeOsDesktopUI.theme_customBorderColor(context)),
+              borderSide: BorderSide(width: JappeOsDesktopUI.theme_defaultBorderSize(), color: JappeOsDesktopUI.theme_customBorderColor(context)),
               borderRadius: BorderRadius.circular(JappeOsDesktopUI.getDefaultBorderRadius()),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: JappeOsDesktopUI.theme_defaultBorderSize(), color: JappeOsDesktopUI.theme_customBorderColor(context)),
+              borderSide: BorderSide(width: JappeOsDesktopUI.theme_defaultBorderSize(), color: JappeOsDesktopUI.theme_customBorderColor(context)),
               borderRadius: BorderRadius.circular(JappeOsDesktopUI.getDefaultBorderRadius()),
             ),
           ),

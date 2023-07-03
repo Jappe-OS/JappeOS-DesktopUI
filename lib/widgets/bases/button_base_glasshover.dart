@@ -18,8 +18,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:jappeos_desktop_ui/jappeos_desktop_ui.dart';
-import 'package:provider/provider.dart';
-import 'package:shade_theming/main.dart';
 
 /// A simple basic button with a glassy hover & click effect.
 class DeuiButtonBaseGlasshover extends StatefulWidget {
@@ -77,9 +75,10 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
 
   @override
   Widget build(BuildContext context) {
-    Color accentColor = context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor;
-    double backgroundTransparency =
-        widget.backgroundColor != null ? (widget.backgroundColorTransp ? JappeOsDesktopUI.theme_defaultGlassFieldTransparency() : widget.backgroundColor!.opacity) : JappeOsDesktopUI.theme_defaultGlassFieldTransparency();
+    Color accentColor = Theme.of(context).colorScheme.primary;
+    double backgroundTransparency = widget.backgroundColor != null
+        ? (widget.backgroundColorTransp ? JappeOsDesktopUI.theme_defaultGlassFieldTransparency() : widget.backgroundColor!.opacity)
+        : JappeOsDesktopUI.theme_defaultGlassFieldTransparency();
 
     double borderWidth = JappeOsDesktopUI.theme_defaultBorderSize();
     Color borderColor = JappeOsDesktopUI.theme_customBorderColor(context);
@@ -100,7 +99,7 @@ class _DeuiButtonBaseGlasshoverState extends State<DeuiButtonBaseGlasshover> {
           color: Colors.transparent,
           child: InkWell(
             mouseCursor: SystemMouseCursors.alias,
-            hoverColor: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(0.1),
+            hoverColor: Theme.of(context).colorScheme.background.withOpacity(0.1),
             splashColor: accentColor.withOpacity(0.25),
             highlightColor: accentColor.withOpacity(0.1),
             borderRadius: BorderRadius.circular(finalBR),

@@ -17,8 +17,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shade_theming/shade_theming.dart';
 
 /// Main class that contains basic properties to build up this UI package.
 class JappeOsDesktopUI {
@@ -30,11 +28,11 @@ class JappeOsDesktopUI {
 
   /// A glassy border color used only by this package.
   static Color theme_customBorderColor(BuildContext ctx) =>
-      ctx.watch<ShadeThemeProvider>().getTheme() == 0 ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2);
+      Theme.of(ctx).brightness == Brightness.light ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2);
 
   /// The default background color for glassy fields.
   static Color theme_customGlassFieldBgColor(BuildContext ctx) =>
-      ctx.watch<ShadeThemeProvider>().getCurrentThemeProperties().backgroundColor1.withOpacity(theme_defaultGlassFieldTransparency());
+      Theme.of(ctx).colorScheme.background.withOpacity(theme_defaultGlassFieldTransparency());
 
   /// The default transparency of glass fields. A field here is a button, text field, etc.
   static double theme_defaultGlassFieldTransparency() => 0.1;

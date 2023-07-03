@@ -16,11 +16,6 @@ dependencies:
   flutter_svg: ^2.0.6
   provider: ^6.0.3
 
-  shade_theming:
-    git:
-      url: https://github.com/Jappe-OS/ShadeTheming.git
-      ref: master
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -28,7 +23,6 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-  
   uses-material-design: true
 
   assets:

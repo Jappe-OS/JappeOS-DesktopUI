@@ -17,8 +17,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shade_theming/main.dart';
 
 /// A simple text widget.
 class DeuiText extends StatefulWidget {
@@ -41,7 +39,6 @@ class _DeuiTextState extends State<DeuiText> {
     return Text(
       widget.text,
       style: TextStyle(
-        color: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().normalTextColor,
         fontSize: widget.isTitle ? 25 : 15,
       ),
     );

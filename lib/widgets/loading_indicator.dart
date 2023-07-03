@@ -17,8 +17,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shade_theming/shade_theming.dart';
 
 /// A simple loading indicator.
 class DeuiLoadingIndicator extends StatefulWidget {
@@ -35,7 +33,7 @@ class _DeuiLoadingIndicatorState extends State<DeuiLoadingIndicator> {
   @override
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
-      color: context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor,
+      color: Theme.of(context).colorScheme.primary,
       strokeWidth: 6.0,
       value: widget.value,
     );

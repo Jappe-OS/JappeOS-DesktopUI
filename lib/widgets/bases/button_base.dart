@@ -18,8 +18,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:jappeos_desktop_ui/jappeos_desktop_ui.dart';
-import 'package:provider/provider.dart';
-import 'package:shade_theming/main.dart';
 
 /// A simple basic button.
 class DeuiButtonBase extends StatefulWidget {
@@ -75,7 +73,7 @@ class DeuiButtonBase extends StatefulWidget {
 class _DeuiButtonBaseState extends State<DeuiButtonBase> {
   @override
   Widget build(BuildContext context) {
-    Color accentColor = context.watch<ShadeThemeProvider>().getCurrentThemeProperties().accentColor;
+    Color accentColor = Theme.of(context).colorScheme.primary;
     double backgroundTransparency = widget.backgroundColor != null
         ? (widget.backgroundColorTransp ? JappeOsDesktopUI.theme_defaultGlassFieldTransparency() : widget.backgroundColor!.opacity)
         : JappeOsDesktopUI.theme_defaultGlassFieldTransparency();
