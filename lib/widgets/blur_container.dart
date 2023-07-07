@@ -111,7 +111,23 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
 
     Color borderColor = Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
 
-    return ClipRRect(
+    return Stack(
+  children: [
+    Container(
+      width: widget.width,
+      height: widget.height,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+    ),
+    ClipRRect(
       borderRadius: brg,
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
@@ -120,11 +136,15 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
           height: widget.height,
           decoration: BoxDecoration(
             image: const DecorationImage(
-                image: AssetImage("resources/images/blur_noise.png", package: "jappeos_desktop_ui"),
-                fit: BoxFit.none,
-                repeat: ImageRepeat.repeat,
-                scale: 7,
-                opacity: 0.035),
+              image: AssetImage(
+                "resources/images/blur_noise.png",
+                package: "jappeos_desktop_ui",
+              ),
+              fit: BoxFit.none,
+              repeat: ImageRepeat.repeat,
+              scale: 7,
+              opacity: 0.035,
+            ),
             gradient: (widget.gradient ?? false)
                 ? LinearGradient(
                     begin: Alignment.topLeft,
@@ -133,7 +153,9 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
                   )
                 : null,
             borderRadius: brg,
-            border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
+            border: (widget.bordered ?? false)
+                ? Border.all(width: 1.5, color: borderColor)
+                : null,
             color: (widget.gradient ?? false)
                 ? null
                 : (Theme.of(context).brightness == Brightness.light
@@ -143,6 +165,8 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
           child: widget.child,
         ),
       ),
-    );
+    ),
+  ],
+);
   }
 }
