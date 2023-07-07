@@ -111,7 +111,8 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
 
     Color borderColor = Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
 
-    return Stack(
+    return SizedBox(width: widget.width,
+          height: widget.height, child: Stack(
   children: [
     Container(
       width: widget.width,
@@ -132,8 +133,6 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
         child: Container(
-          width: widget.width,
-          height: widget.height,
           decoration: BoxDecoration(
             image: const DecorationImage(
               image: AssetImage(
@@ -167,6 +166,6 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       ),
     ),
   ],
-);
+),);
   }
 }
