@@ -112,50 +112,58 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
     Color borderColor =
         Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
 
-    return ClipRRect(
-      borderRadius: brg,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-        child: Container(
-          width: widget.width,
-          height: widget.height,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.3),
-                spreadRadius: 2,
-                blurRadius: 10,
-                offset: Offset(0, 4),
-              ),
-            ],
-            image: const DecorationImage(
-              image: AssetImage(
-                "resources/images/blur_noise.png",
-                package: "jappeos_desktop_ui",
-              ),
-              fit: BoxFit.none,
-              repeat: ImageRepeat.repeat,
-              scale: 7,
-              opacity: 0.035,
-            ),
-            gradient: (widget.gradient ?? false)
-                ? LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomCenter,
-                    colors: gradientColors(),
-                  )
-                : null,
-            borderRadius: brg,
-            border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
-            color: (widget.gradient ?? false)
-                ? null
-                : (Theme.of(context).brightness == Brightness.light
-                    ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
-                    : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity)),
-          ),
-          child: widget.child,
-        ),
+    return Container(
+  width: widget.width,
+  height: widget.height,
+  decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.3),
+        spreadRadius: 2,
+        blurRadius: 10,
+        offset: Offset(0, 4),
       ),
-    );
+    ],
+  ),
+  child: ClipRRect(
+    borderRadius: brg,
+    child: BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+      child: Container(
+        width: widget.width,
+        height: widget.height,
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage(
+              "resources/images/blur_noise.png",
+              package: "jappeos_desktop_ui",
+            ),
+            fit: BoxFit.none,
+            repeat: ImageRepeat.repeat,
+            scale: 7,
+            opacity: 0.035,
+          ),
+          gradient: (widget.gradient ?? false)
+              ? LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomCenter,
+                  colors: gradientColors(),
+                )
+              : null,
+          borderRadius: brg,
+          border: (widget.bordered ?? false)
+              ? Border.all(width: 1.5, color: borderColor)
+              : null,
+          color: (widget.gradient ?? false)
+              ? null
+              : (Theme.of(context).brightness == Brightness.light
+                  ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
+                  : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity)),
+        ),
+        child: widget.child,
+      ),
+    ),
+  ),
+);
   }
 }
