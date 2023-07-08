@@ -41,6 +41,9 @@ class DeuiBlurContainer extends StatefulWidget {
   /// Whether to show a border or not.
   final bool? bordered;
 
+  /// Whether the element has a shadow.
+  final bool hasShadow;
+
   /// The width of the widget.
   final double? width;
 
@@ -54,7 +57,7 @@ class DeuiBlurContainer extends StatefulWidget {
   final bool? reducedRadius;
 
   const DeuiBlurContainer(
-      {Key? key, required this.child, this.gradient, this.bordered, this.width, this.height, this.radiusSides, this.reducedRadius})
+      {Key? key, required this.child, this.gradient, this.bordered, this.hasShadow = true, this.width, this.height, this.radiusSides, this.reducedRadius})
       : super(key: key);
 
   @override
@@ -113,57 +116,55 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
         Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
 
     return Container(
-  width: widget.width,
-  height: widget.height,
-  decoration: BoxDecoration(
-    boxShadow: [
-      BoxShadow(
-        color: Colors.black.withOpacity(0.3),
-        spreadRadius: 2,
-        blurRadius: 10,
-        offset: Offset(0, 4),
-      ),
-    ],
-  ),
-  child: ClipRRect(
-    borderRadius: brg,
-    child: BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-      child: Container(
-        width: widget.width,
-        height: widget.height,
-        decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage(
-              "resources/images/blur_noise.png",
-              package: "jappeos_desktop_ui",
-            ),
-            fit: BoxFit.none,
-            repeat: ImageRepeat.repeat,
-            scale: 7,
-            opacity: 0.035,
+      width: widget.width,
+      height: widget.height,
+      decoration: BoxDecoration(
+        boxShadow: widget.hasShadow ? [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 15,
+            offset: Offset(0, 4),
           ),
-          gradient: (widget.gradient ?? false)
-              ? LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomCenter,
-                  colors: gradientColors(),
-                )
-              : null,
-          borderRadius: brg,
-          border: (widget.bordered ?? false)
-              ? Border.all(width: 1.5, color: borderColor)
-              : null,
-          color: (widget.gradient ?? false)
-              ? null
-              : (Theme.of(context).brightness == Brightness.light
-                  ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
-                  : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity)),
-        ),
-        child: widget.child,
+        ] : null,
       ),
-    ),
-  ),
-);
+      child: ClipRRect(
+        borderRadius: brg,
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+          child: Container(
+            width: widget.width,
+            height: widget.height,
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage(
+                  "resources/images/blur_noise.png",
+                  package: "jappeos_desktop_ui",
+                ),
+                fit: BoxFit.none,
+                repeat: ImageRepeat.repeat,
+                scale: 7,
+                opacity: 0.035,
+              ),
+              gradient: (widget.gradient ?? false)
+                  ? LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomCenter,
+                      colors: gradientColors(),
+                    )
+                  : null,
+              borderRadius: brg,
+              border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
+              color: (widget.gradient ?? false)
+                  ? null
+                  : (Theme.of(context).brightness == Brightness.light
+                      ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
+                      : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity)),
+            ),
+            child: widget.child,
+          ),
+        ),
+      ),
+    );
   }
 }

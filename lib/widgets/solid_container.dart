@@ -28,6 +28,9 @@ class DeuiSolidContainer extends StatefulWidget {
   /// Whether to show a border or not.
   final bool? bordered;
 
+  /// Whether the element has a shadow.
+  final bool hasShadow;
+
   /// The width of the widget.
   final double? width;
 
@@ -40,7 +43,7 @@ class DeuiSolidContainer extends StatefulWidget {
   /// Whether to use a smaller variant of border radius.
   final bool? reducedRadius;
 
-  const DeuiSolidContainer({Key? key, required this.child, this.bordered, this.width, this.height, this.radiusSides, this.reducedRadius})
+  const DeuiSolidContainer({Key? key, required this.child, this.bordered, this.hasShadow = true, this.width, this.height, this.radiusSides, this.reducedRadius})
       : super(key: key);
 
   @override
@@ -78,17 +81,31 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
           : Radius.zero,
     );
 
-    return ClipRRect(
+    return Container(
+      width: widget.width,
+      height: widget.height,
+      decoration: BoxDecoration(
+        boxShadow: widget.hasShadow ? [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            spreadRadius: 2,
+            blurRadius: 15,
+            offset: Offset(0, 4),
+          ),
+        ] : null,
+      ),
+      child: ClipRRect(
       borderRadius: brg,
-      child: Container(
-        width: widget.width,
-        height: widget.height,
-        decoration: BoxDecoration(
-          borderRadius: brg,
-          border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
-          color: Theme.of(context).colorScheme.background,
+        child: Container(
+          width: widget.width,
+          height: widget.height,
+          decoration: BoxDecoration(
+            borderRadius: brg,
+            border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
+            color: Theme.of(context).colorScheme.background,
+          ),
+          child: widget.child,
         ),
-        child: widget.child,
       ),
     );
   }
