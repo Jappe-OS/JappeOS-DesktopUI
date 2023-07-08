@@ -112,20 +112,22 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
     Color borderColor = Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
 
     return Stack(
-      
   children: [
-    Container(
-      width: widget.width,
-      height: widget.height,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: Offset(0, 4),
-          ),
-        ],
+    Align(
+      alignment: Alignment.topLeft,
+      child: Container(
+        width: widget.width,
+        height: widget.height,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
+        ),
       ),
     ),
     ClipRRect(
