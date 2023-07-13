@@ -131,7 +131,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       child: ClipRRect(
         borderRadius: brg,
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 19, sigmaY: 19, tileMode: TileMode.decal),
+          filter: ImageFilter.blur(sigmaX: 19, sigmaY: 19, tileMode: TileMode.repeated),
           child: Container(
             width: widget.width,
             height: widget.height,
