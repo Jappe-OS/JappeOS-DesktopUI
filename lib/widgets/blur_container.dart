@@ -20,6 +20,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:jappeos_desktop_ui/jappeos_desktop_ui.dart';
+import 'package:jappeos_desktop_ui/widgets/container.dart';
 
 class BorderRadiusSides {
   final bool topLeft;
@@ -112,8 +113,9 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       }
     }
 
-    Color borderColor =
-        Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
+    Color borderColor = darkBorder(Theme.of(context).brightness == Brightness.light
+                      ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
+                      : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity));
 
     return Container(
       width: widget.width,
@@ -126,6 +128,11 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
             blurRadius: 15,
             offset: Offset(0, 4),
           ),
+          BoxShadow(
+            color: borderColor,
+            blurRadius: 0,
+            spreadRadius: 1,
+          )
         ] : null,
       ),
       child: ClipRRect(
@@ -154,7 +161,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
                     )
                   : null,
               borderRadius: brg,
-              border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
+              border: (widget.bordered ?? false) ? Border.all(width: 1, color: Theme.of(context).colorScheme.outline) : null,
               color: (widget.gradient ?? false)
                   ? null
                   : (Theme.of(context).brightness == Brightness.light

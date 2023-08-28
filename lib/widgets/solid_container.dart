@@ -20,6 +20,8 @@ import 'package:flutter/material.dart';
 import 'package:jappeos_desktop_ui/jappeos_desktop_ui.dart';
 import 'package:jappeos_desktop_ui/widgets/blur_container.dart';
 
+import 'container.dart';
+
 /// A container with a solid background.
 class DeuiSolidContainer extends StatefulWidget {
   /// The child inside the widget.
@@ -54,7 +56,7 @@ class DeuiSolidContainer extends StatefulWidget {
 class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
   @override
   Widget build(BuildContext context) {
-    Color borderColor = Theme.of(context).brightness == Brightness.light ? const Color.fromARGB(77, 255, 255, 255) : const Color.fromARGB(77, 0, 0, 0);
+    Color borderColor = darkBorder(Theme.of(context).colorScheme.background);
 
     bool reducedRadius = widget.reducedRadius ?? false;
 
@@ -101,7 +103,14 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
           height: widget.height,
           decoration: BoxDecoration(
             borderRadius: brg,
-            border: (widget.bordered ?? false) ? Border.all(width: 1.5, color: borderColor) : null,
+            border: (widget.bordered ?? false) ? Border.all(width: 1, color: Theme.of(context).colorScheme.outline) : null,
+            boxShadow: [
+              BoxShadow(
+                color: borderColor,
+                blurRadius: 0,
+                spreadRadius: 1,
+              )
+            ],
             color: Theme.of(context).colorScheme.background,
           ),
           child: widget.child,
