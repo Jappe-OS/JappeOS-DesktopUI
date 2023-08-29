@@ -158,6 +158,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
           child: Container(
             width: widget.width,
             height: widget.height,
+            padding: EdgeInsets.all(bordersWidth()),
             decoration: BoxDecoration(
               image: const DecorationImage(
                 image: AssetImage(

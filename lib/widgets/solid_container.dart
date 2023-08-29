@@ -103,6 +103,7 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
         child: Container(
           width: widget.width,
           height: widget.height,
+          padding: EdgeInsets.all(bordersWidth()),
           decoration: BoxDecoration(
             borderRadius: brg,
             border: widget.bordered ? borderInner(context) : null,
