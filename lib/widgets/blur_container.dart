@@ -37,10 +37,10 @@ class DeuiBlurContainer extends StatefulWidget {
   final Widget child;
 
   /// Adds a nice gradient & glassy effect to the blur.
-  final bool? gradient;
+  final bool gradient;
 
   /// Whether to show a border or not.
-  final bool? bordered;
+  final bool bordered;
 
   /// Whether the element has a shadow.
   final bool hasShadow;
@@ -58,7 +58,15 @@ class DeuiBlurContainer extends StatefulWidget {
   final bool? reducedRadius;
 
   const DeuiBlurContainer(
-      {Key? key, required this.child, this.gradient, this.bordered, this.hasShadow = true, this.width, this.height, this.radiusSides, this.reducedRadius})
+      {Key? key,
+      required this.child,
+      this.gradient = false,
+      this.bordered = false,
+      this.hasShadow = true,
+      this.width,
+      this.height,
+      this.radiusSides,
+      this.reducedRadius})
       : super(key: key);
 
   @override
@@ -69,7 +77,6 @@ class DeuiBlurContainer extends StatefulWidget {
 class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
   @override
   Widget build(BuildContext context) {
-    int gradientSecondColorChange = 100;
     double backgroundOpacity = 0.6;
 
     bool reducedRadius = widget.reducedRadius ?? false;
@@ -99,41 +106,42 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
           )
         : const BorderRadius.all(Radius.zero);
 
-    List<Color> gradientColors() {
-      if (Theme.of(context).brightness == Brightness.light) {
-        return [
-          Color.fromRGBO(255, 255, 255, backgroundOpacity),
-          Color.fromRGBO(255 - gradientSecondColorChange, 255 - gradientSecondColorChange, 255 - gradientSecondColorChange, backgroundOpacity)
-        ];
-      } else {
-        return [
-          Color.fromRGBO(0, 0, 0, backgroundOpacity),
-          Color.fromRGBO(0 + gradientSecondColorChange, 0 + gradientSecondColorChange, 0 + gradientSecondColorChange, backgroundOpacity)
-        ];
+    LinearGradient gradientBackground() {
+      List<Color> gradientColors() {
+        int gradientSecondColorChange = 100;
+
+        if (Theme.of(context).brightness == Brightness.light) {
+          return [
+            Color.fromRGBO(255, 255, 255, backgroundOpacity),
+            Color.fromRGBO(255 - gradientSecondColorChange, 255 - gradientSecondColorChange, 255 - gradientSecondColorChange, backgroundOpacity)
+          ];
+        } else {
+          return [
+            Color.fromRGBO(0, 0, 0, backgroundOpacity),
+            Color.fromRGBO(0 + gradientSecondColorChange, 0 + gradientSecondColorChange, 0 + gradientSecondColorChange, backgroundOpacity)
+          ];
+        }
       }
+
+      return LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomCenter,
+        colors: gradientColors(),
+      );
     }
 
-    Color borderColor = darkBorder(Theme.of(context).brightness == Brightness.light
-                      ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
-                      : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity));
+    Color solidBackgroundColor() => Theme.of(context).brightness == Brightness.light
+        ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
+        : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity);
 
     return Container(
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
         borderRadius: brg,
+        border: borderOuter(solidBackgroundColor()),
         boxShadow: widget.hasShadow ? [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            spreadRadius: 2,
-            blurRadius: 15,
-            offset: Offset(0, 4),
-          ),
-          BoxShadow(
-            color: borderColor,
-            blurRadius: 0,
-            spreadRadius: 1,
-          )
+          shadow(),
         ] : null,
       ),
       child: ClipRRect(
@@ -152,22 +160,12 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
                 fit: BoxFit.none,
                 repeat: ImageRepeat.repeat,
                 scale: 7,
-                opacity: 0.035,
+                opacity: 0.038,
               ),
-              gradient: (widget.gradient ?? false)
-                  ? LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomCenter,
-                      colors: gradientColors(),
-                    )
-                  : null,
+              gradient: widget.gradient ? gradientBackground() : null,
               borderRadius: brg,
-              border: (widget.bordered ?? false) ? Border.all(width: 1, color: Theme.of(context).colorScheme.outline) : null,
-              color: (widget.gradient ?? false)
-                  ? null
-                  : (Theme.of(context).brightness == Brightness.light
-                      ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
-                      : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity)),
+              border: widget.bordered ? borderInner(context) : null,
+              color: !widget.gradient ? solidBackgroundColor() : null,
             ),
             child: widget.child,
           ),
