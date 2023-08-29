@@ -132,7 +132,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
     }
 
     Color solidBackgroundColor() {
-      int mod = 5;
+      int mod = 10;
 
       return Theme.of(context).brightness == Brightness.light
           ? Color.fromRGBO(255 - mod, 255 - mod, 255 - mod, backgroundOpacity)
