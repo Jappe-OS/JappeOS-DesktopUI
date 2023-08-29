@@ -87,6 +87,7 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
+        borderRadius: brg,
         boxShadow: widget.hasShadow ? [
           BoxShadow(
             color: Colors.black.withOpacity(0.3),
@@ -94,23 +95,21 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
             blurRadius: 15,
             offset: Offset(0, 4),
           ),
+          BoxShadow(
+            color: borderColor,
+            blurRadius: 0,
+            spreadRadius: 1,
+          )
         ] : null,
       ),
       child: ClipRRect(
-      borderRadius: brg,
+        borderRadius: brg,
         child: Container(
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
             borderRadius: brg,
             border: (widget.bordered ?? false) ? Border.all(width: 1, color: Theme.of(context).colorScheme.outline) : null,
-            boxShadow: [
-              BoxShadow(
-                color: borderColor,
-                blurRadius: 0,
-                spreadRadius: 1,
-              )
-            ],
             color: Theme.of(context).colorScheme.background,
           ),
           child: widget.child,

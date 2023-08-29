@@ -121,6 +121,7 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
+        borderRadius: brg,
         boxShadow: widget.hasShadow ? [
           BoxShadow(
             color: Colors.black.withOpacity(0.3),
