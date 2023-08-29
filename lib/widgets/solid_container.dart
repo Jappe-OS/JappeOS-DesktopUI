@@ -91,7 +91,7 @@ class _DeuiSolidContainerState extends State<DeuiSolidContainer> {
       height: widget.height,
       decoration: BoxDecoration(
         borderRadius: brg,
-        border: borderOuter(backgroundColor()),
+        border: widget.bordered ? borderOuter(backgroundColor()) : null,
         boxShadow: widget.hasShadow
             ? [
                 shadow(),

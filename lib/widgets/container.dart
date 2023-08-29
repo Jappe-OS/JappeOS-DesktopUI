@@ -18,9 +18,9 @@ BoxShadow shadow() {
 double bordersWidth() => 1.0;
 
 BoxBorder borderInner(BuildContext ctx) {
-  return Border.all(width: 1, color: Theme.of(ctx).colorScheme.outline);
+  return Border.all(width: 1, color: Theme.of(ctx).colorScheme.outline.withOpacity(1));
 }
 
 BoxBorder borderOuter(Color background) {
-  return Border.all(width: 1, color: darkBorder(background), strokeAlign: BorderSide.strokeAlignOutside);
+  return Border.all(width: 1, color: darkBorder(background.withOpacity(1)), strokeAlign: BorderSide.strokeAlignOutside);
 }
