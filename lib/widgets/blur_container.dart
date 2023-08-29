@@ -37,6 +37,7 @@ class DeuiBlurContainer extends StatefulWidget {
   final Widget child;
 
   /// Adds a nice gradient & glassy effect to the blur.
+  @Deprecated("Gradient is not supported anymore! Might lead into messy looking UI!")
   final bool gradient;
 
   /// Whether to show a border or not.
@@ -77,7 +78,7 @@ class DeuiBlurContainer extends StatefulWidget {
 class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
   @override
   Widget build(BuildContext context) {
-    double backgroundOpacity = 0.6;
+    double backgroundOpacity = 0.8;
 
     bool reducedRadius = widget.reducedRadius ?? false;
 
