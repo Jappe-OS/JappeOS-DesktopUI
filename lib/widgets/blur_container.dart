@@ -130,9 +130,13 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       );
     }
 
-    Color solidBackgroundColor() => Theme.of(context).brightness == Brightness.light
-        ? Color.fromRGBO(255 - 35, 255 - 35, 255 - 35, backgroundOpacity)
-        : Color.fromRGBO(0 + 35, 0 + 35, 0 + 35, backgroundOpacity);
+    Color solidBackgroundColor() {
+      int mod = 40;
+
+      return Theme.of(context).brightness == Brightness.light
+          ? Color.fromRGBO(255 - mod, 255 - mod, 255 - mod, backgroundOpacity)
+          : Color.fromRGBO(0 + mod, 0 + mod, 0 + mod, backgroundOpacity);
+    }
 
     return Container(
       width: widget.width,
@@ -140,9 +144,11 @@ class _DeuiBlurContainerState extends State<DeuiBlurContainer> {
       decoration: BoxDecoration(
         borderRadius: brg,
         border: widget.bordered ? borderOuter(solidBackgroundColor()) : null,
-        boxShadow: widget.hasShadow ? [
-          shadow(),
-        ] : null,
+        boxShadow: widget.hasShadow
+            ? [
+                shadow(),
+              ]
+            : null,
       ),
       child: ClipRRect(
         borderRadius: brg,
